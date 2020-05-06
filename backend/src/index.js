@@ -9,6 +9,10 @@ const server = createServer();
 
 server.express.use(cookieParser());
 
+//1. decode the JWT so we can get the user Id on each request
+
+// 2. Create a middleware that populates the user on each request
+
 server.start(
 	{
 		cors: {
