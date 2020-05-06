@@ -11,7 +11,7 @@ const ALL_POSTS_QUERY = gql`
 		posts(first: $first, skip: $skip, orderBy:createdAt_DESC) {
 			id
 			title
-			price
+			
 			description
 			image
 			largeImage
@@ -38,7 +38,9 @@ class Posts extends Component {
 					{({ data, error, loading }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error: {error.message}</p>;
+
 						console.log(data);
+						if (data.posts.length < 1) return <p>No Posts Yet !</p>;
 						return <PostsList>{data.posts.map((post) => <Post post={post} key={post.id} />)}</PostsList>;
 					}}
 				</Query>

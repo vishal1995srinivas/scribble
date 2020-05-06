@@ -27,7 +27,7 @@ const NavStyles = styled.ul`
 			width: 2px;
 			background: ${(props) => props.theme.lightgrey};
 			height: 100%;
-			left: 0;
+			right: 0;
 			position: absolute;
 			/* making the tabs divider slant---btw home/sell under logo-- skew comes to the rescue! */
 			transform: skew(-20deg);

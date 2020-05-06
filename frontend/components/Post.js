@@ -10,7 +10,6 @@ export default class Post extends Component {
 	static propTypes = {
 		post: PropTypes.object.isRequired
 	};
-
 	render() {
 		const { post } = this.props;
 		return (
@@ -26,7 +25,7 @@ export default class Post extends Component {
 						<a>{post.title}</a>
 					</Link>
 				</Title>
-				<PriceTag>{formatMoney(post.price)}</PriceTag>
+
 				<p>{post.description}</p>
 
 				<div className="buttonList">

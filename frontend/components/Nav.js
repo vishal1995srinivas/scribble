@@ -11,12 +11,12 @@ const Nav = () => (
 	// 	{({ data: { me } }) => (
 			<NavStyles data-test="nav">
 				<Link href="/Items">
-					<a>Shop</a>
+					<a>Posts</a>
 				</Link>
 				{/* {me && ( */}
 					<>
 						<Link href="/sell">
-							<a>Sell</a>
+							<a>Write</a>
 						</Link>
 						
 						
