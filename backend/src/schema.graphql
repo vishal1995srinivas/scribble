@@ -14,4 +14,5 @@ type Mutation {
 }
 
 type Query {
+	posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, first: Int): [Post]!
 }
