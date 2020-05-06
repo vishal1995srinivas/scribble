@@ -22,4 +22,5 @@ type Query {
 	me: User
 	post(where: PostWhereUniqueInput!): Post
 	likesesConnection(where: LikesWhereInput): LikesConnection!
+	likeses(where: LikesWhereInput): [Likes]!
 }
