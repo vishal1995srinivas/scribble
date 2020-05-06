@@ -7,7 +7,9 @@ const Columns = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-gap: 20px;
 `;
-const SignUpPage = (props) => <Columns>{/* <SignUp />
-		
-		 */}</Columns>;
+const SignUpPage = (props) => (
+	<Columns>
+		<SignUp />
+	</Columns>
+);
 export default SignUpPage;
