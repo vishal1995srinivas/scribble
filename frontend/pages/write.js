@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import CreateItem from '../components/CreateItem';
+
 import PleaseSignIn from '../components/PleaseSignIn';
+import CreatePost from '../components/CreatePost';
 function Write() {
 	return (
 		<div>
 			<PleaseSignIn>
-				<CreateItem />
+				<CreatePost />
 			</PleaseSignIn>
 		</div>
 	);

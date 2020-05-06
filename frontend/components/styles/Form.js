@@ -23,8 +23,18 @@ const Form = styled.form`
 		display: block;
 		margin-bottom: 1rem;
 	}
+	textarea {
+		width: 100%;
+		height: 40rem;
+		padding: 0.5rem;
+		font-size: 1rem;
+		border: 1px solid black;
+		&:focus {
+			outline: 0;
+			border-color: ${(props) => props.theme.red};
+		}
+	}
 	input,
-	textarea,
 	select {
 		width: 100%;
 		padding: 0.5rem;
