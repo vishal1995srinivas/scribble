@@ -54,7 +54,6 @@ class SinglePost extends Component {
 								<title>Scribble | {post.title}</title>
 							</Head>
 							<img src={post.largeImage} alt={post.title} />
-
 							<div className="details">
 								{/* <CreateLikes postId={this.props.id} />  */}
 								<TotalLikes />
