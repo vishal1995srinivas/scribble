@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Title from './styles/Title';
 import PostStyles from './styles/PostStyles';
 
-// import DeletePost from './DeletePost';
+import DeletePost from './DeletePost';
 
 export default class Post extends Component {
 	static propTypes = {
@@ -38,7 +38,7 @@ export default class Post extends Component {
 						<a>Edit ✏️</a>
 					</Link>
 
-					{/* <DeletePost id={post.id}>Delete This post</DeletePost> */}
+					<DeletePost id={post.id}>Delete ❌</DeletePost>
 				</div>
 			</PostStyles>
 		);
