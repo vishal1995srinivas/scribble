@@ -1,36 +1,31 @@
 import Link from 'next/link';
 import { Mutation } from 'react-apollo';
-// import User from './User';
+ import User from './User';
 // import Signout from './SignOut';
-
-
 import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
-	// <User>
-	// 	{({ data: { me } }) => (
+	<User>
+		{({ data: { me } }) => (
 			<NavStyles data-test="nav">
 				<Link href="/Items">
 					<a>Posts</a>
 				</Link>
-				{/* {me && ( */}
+				{me && (
 					<>
-						<Link href="/sell">
+						<Link href="/write">
 							<a>Write</a>
 						</Link>
-						
-						
 						{/* <Signout /> */}
-						
 					</>
-				{/* )} */}
-				{/* {!me && ( */}
+				 )} 
+				 {!me && ( 
 					<Link href="/signup">
 						<a>SignIn</a>
 					</Link>
-				{/* )} */}
+				 )} 
 			</NavStyles>
-	// 	)}
-	// </User>
+		)}
+	</User>
 );
 export default Nav;
