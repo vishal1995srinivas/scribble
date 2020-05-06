@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import Error from './ErrorMessage';
 import styled from 'styled-components';
 import Head from 'next/head';
-// import TotalLikes from './TotalLikes';
+import TotalLikes from './TotalLikes';
 // import CreateLikes from './CreateLikes';
 const SinglePostStyles = styled.div`
 	max-width: 1200px;
@@ -22,6 +22,9 @@ const SinglePostStyles = styled.div`
 	.details {
 		margin: 3rem;
 		font-size: 2rem;
+	}
+	.likes {
+		margin-left: 3rem;
 	}
 `;
 const SINGLE_POST_QUERY = gql`
@@ -51,12 +54,13 @@ class SinglePost extends Component {
 								<title>Scribble | {post.title}</title>
 							</Head>
 							<img src={post.largeImage} alt={post.title} />
+
 							<div className="details">
+								{/* <CreateLikes postId={this.props.id} />  */}
+								<TotalLikes />
 								<h2>{post.title}</h2>
 								<p>Description {post.description}</p>
 								<p>Likes</p>
-								{/* <TotalLikes />
-								<CreateLikes postId={this.props.id} /> */}
 							</div>
 						</SinglePostStyles>
 					);
