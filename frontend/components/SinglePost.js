@@ -24,25 +24,44 @@ const SinglePostStyles = styled.div`
 		font-size: 2rem;
 	}
 `;
-
+const SINGLE_POST_QUERY = gql`
+	query SINGLE_POST_QUERY($id: ID!) {
+		post(where: { id: $id }) {
+			id
+			title
+			description
+			largeImage
+		}
+	}
+`;
 class SinglePost extends Component {
 	render() {
 		return (
-			<SinglePostStyles>
-				{/* Observe here we are changing title of the page .
+			<Query query={SINGLE_POST_QUERY} variables={{ id: this.props.id }}>
+				{({ error, loading, data }) => {
+					if (error) return <Error error={error} />;
+					if (loading) return <p>Loading...</p>;
+					if (!data.post) return <p>No Post found for {this.props.id}</p>;
+					const post = data.post;
+					return (
+						<SinglePostStyles>
+							{/* Observe here we are changing title of the page .
                             nextjs provides us the head where we can add anything and it collects everything and displays  */}
-				<Head>
-					<title>Scribble | {post.title}</title>
-				</Head>
-				<img src={post.largeImage} alt={post.title} />
-				<div className="details">
-					<h2>{post.title}</h2>
-					<p>Description {post.description}</p>
-					<p>Likes</p>
-					{/* <TotalLikes />
+							<Head>
+								<title>Scribble | {post.title}</title>
+							</Head>
+							<img src={post.largeImage} alt={post.title} />
+							<div className="details">
+								<h2>{post.title}</h2>
+								<p>Description {post.description}</p>
+								<p>Likes</p>
+								{/* <TotalLikes />
 								<CreateLikes postId={this.props.id} /> */}
-				</div>
-			</SinglePostStyles>
+							</div>
+						</SinglePostStyles>
+					);
+				}}
+			</Query>
 		);
 	}
 }

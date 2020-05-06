@@ -27,3 +27,10 @@ type Post {
 	updatedAt: DateTime! @updatedAt
 	user: User! 
 }
+
+type Likes {
+	id: ID! @id
+	post: Post!
+	user: User!
+	createdAt: DateTime @createdAt 
+}
