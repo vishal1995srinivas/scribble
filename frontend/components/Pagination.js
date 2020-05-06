@@ -19,7 +19,6 @@ const Pagination = (props) => (
 		{({ data, loading, error }) => {
 			if (loading) return <p>Loading...</p>;
 			if (error) return <p>Error</p>;
-
 			const count = data.postsConnection.aggregate.count;
 			const pages = Math.ceil(count / perPage);
 			return (
