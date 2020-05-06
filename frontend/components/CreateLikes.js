@@ -15,34 +15,44 @@ class CreateLikes extends Component {
 	};
 	render() {
 		return (
-			<Form
-				data-test="form"
-				onSubmit={async (e) => {
-					// Stop the form from submitting
-					e.preventDefault();
-					// call the mutation
-					const res = await createLikes();
-					// change them to the single item page
-					console.log(res);
-					this.setState({ buttonClicked: true });
-				}}
+			<Mutation
+				mutation={CREATE_LIKE}
+				variables={{ item: this.props.itemId }}
+				refetchQueries={[ { query: TOTAL_LIKES_QUERY } ]}
 			>
-				<Error error={error} />
-
-				<div>
-					{this.state.buttonClicked ? (
-						<button type="submit" disabled>
-							Liked !
-						</button>
-					) : (
-						<button type="submit">Lik{loading ? 'ing' : 'e'}</button>
-					)}
-				</div>
-
-				<Link href="/signup">
-					<a>Like</a>
-				</Link>
-			</Form>
+				{(createLikes, { loading, error }) => (
+					<Form
+						data-test="form"
+						onSubmit={async (e) => {
+							// Stop the form from submitting
+							e.preventDefault();
+							// call the mutation
+							const res = await createLikes();
+							// change them to the single item page
+							console.log(res);
+							this.setState({ buttonClicked: true });
+						}}
+					>
+						<Error error={error} />
+						{me && (
+							<div>
+								{this.state.buttonClicked ? (
+									<button type="submit" disabled>
+										Liked !
+									</button>
+								) : (
+									<button type="submit">Lik{loading ? 'ing' : 'e'}</button>
+								)}
+							</div>
+						)}
+						{!me && (
+							<Link href="/signup">
+								<a>Like</a>
+							</Link>
+						)}
+					</Form>
+				)}
+			</Mutation>
 		);
 	}
 }
