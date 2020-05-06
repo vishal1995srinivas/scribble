@@ -7,9 +7,10 @@ import Error from './ErrorMessage';
 import PleaseSignIn from './PleaseSignIn';
 import User from './User';
 import Link from 'next/link';
+import TotalLikes from './TotalLikes';
 const CREATE_LIKE = gql`
-	mutation CREATE_LIKE($item: ID!) {
-		createLikes(item: $item) {
+	mutation CREATE_LIKE($post: ID!) {
+		createLikes(post: $post) {
 			id
 		}
 	}
@@ -34,7 +35,7 @@ class CreateLikes extends Component {
 				{({ data: { me } }) => (
 					<Mutation
 						mutation={CREATE_LIKE}
-						variables={{ item: this.props.itemId }}
+						variables={{ post: this.props.postId }}
 						refetchQueries={[ { query: TOTAL_LIKES_QUERY } ]}
 					>
 						{(createLikes, { loading, error }) => (
@@ -45,7 +46,7 @@ class CreateLikes extends Component {
 									e.preventDefault();
 									// call the mutation
 									const res = await createLikes();
-									// change them to the single item page
+									// change them to the single post page
 									console.log(res);
 									this.setState({ buttonClicked: true });
 								}}
@@ -54,17 +55,27 @@ class CreateLikes extends Component {
 								{me && (
 									<div>
 										{this.state.buttonClicked ? (
-											<button type="submit" disabled>
-												Liked !
-											</button>
+											<div>
+												<TotalLikes />
+												<div align="right">
+													<button type="submit" disabled>
+														🏁 You have Liked !
+													</button>
+												</div>
+											</div>
 										) : (
-											<button type="submit">Lik{loading ? 'ing' : 'e'}</button>
+											<div>
+												<TotalLikes />
+												<div align="right">
+													<button type="submit">👍 Lik{loading ? 'ing' : 'e'}</button>
+												</div>
+											</div>
 										)}
 									</div>
 								)}
 								{!me && (
 									<Link href="/signup">
-										<a>Like</a>
+										<a>👍 Like</a>
 									</Link>
 								)}
 							</Form>

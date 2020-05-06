@@ -19,8 +19,10 @@ const TotalLikes = (props) => (
 			const count = data.likesesConnection.aggregate.count;
 			console.log(count);
 			return (
-				<div>
-					{count} like{count > 1 && 's'}
+				<div align="left">
+					<h2>
+						{count} lik{count == 1 ? 'e' : 's'}
+					</h2>
 				</div>
 			);
 		}}

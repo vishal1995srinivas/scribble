@@ -127,7 +127,7 @@ const Mutations = {
 		const post = await ctx.db.mutation.createPost(
 			{
 				data: {
-					// This is how to create a relationship between the Item and the User
+					// This is how to create a relationship between the post and the User
 					user: {
 						connect: {
 							id: ctx.request.userId
@@ -183,8 +183,8 @@ const Mutations = {
 		//Check the user already liked. if yes ->Throw error.
 		const LikedBefore = await ctx.db.query.likeses({
 			where: {
-				item: {
-					id: args.item
+				post: {
+					id: args.post
 				},
 				user: {
 					id: ctx.request.userId
@@ -202,9 +202,9 @@ const Mutations = {
 						id: ctx.request.userId
 					}
 				},
-				item: {
+				post: {
 					connect: {
-						id: args.item
+						id: args.post
 					}
 				}
 			}

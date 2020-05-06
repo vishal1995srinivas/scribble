@@ -56,7 +56,6 @@ class SinglePost extends Component {
 							<img src={post.largeImage} alt={post.title} />
 							<div className="details">
 								<CreateLikes postId={this.props.id} />
-								<TotalLikes />
 								<h2>{post.title}</h2>
 								<p>Description {post.description}</p>
 								<p>Likes</p>
