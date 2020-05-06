@@ -43,14 +43,11 @@ class CreateLikes extends Component {
 				{({ data: { me } }) => (
 					<Query query={CHECK_LIKES_QUERY} variables={{ post: this.props.postId }}>
 						{({ error, loading, data }) => {
-							console.log(error);
-							console.log(loading);
-							console.log(data);
 							return (
 								<Mutation
 									mutation={CREATE_LIKE}
 									variables={{ post: this.props.postId }}
-									refetchQueries={[ { query: TOTAL_LIKES_QUERY } ]}
+									refetchQueries={[ { query: TOTAL_LIKES_QUERY }, { query: CHECK_LIKES_QUERY } ]}
 								>
 									{(createLikes, { loading, error }) => (
 										<Form
@@ -66,25 +63,38 @@ class CreateLikes extends Component {
 											}}
 										>
 											<Error error={error} />
-											{me && (
+											{data.likeses.length > 0 ? (
 												<div>
-													{this.state.buttonClicked ? (
+													<TotalLikes />
+													<div align="right">
+														<button type="submit" disabled>
+															🏁 You have Liked !
+														</button>
+													</div>
+												</div>
+											) : (
+												<div>
+													{me && (
 														<div>
-															<TotalLikes />
-															<div align="right">
-																<button type="submit" disabled>
-																	🏁 You have Liked !
-																</button>
-															</div>
-														</div>
-													) : (
-														<div>
-															<TotalLikes />
-															<div align="right">
-																<button type="submit">
-																	👍 Lik{loading ? 'ing' : 'e'}
-																</button>
-															</div>
+															{this.state.buttonClicked ? (
+																<div>
+																	<TotalLikes />
+																	<div align="right">
+																		<button type="submit" disabled>
+																			🏁 You have Liked !
+																		</button>
+																	</div>
+																</div>
+															) : (
+																<div>
+																	<TotalLikes />
+																	<div align="right">
+																		<button type="submit">
+																			👍 Lik{loading ? 'ing' : 'e'}
+																		</button>
+																	</div>
+																</div>
+															)}
 														</div>
 													)}
 												</div>
