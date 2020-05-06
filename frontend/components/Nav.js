@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Mutation } from 'react-apollo';
  import User from './User';
-// import Signout from './SignOut';
+ import Signout from './SignOut';
 import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
 	<User>
+		
 		{({ data: { me } }) => (
 			<NavStyles data-test="nav">
 				<Link href="/Items">
@@ -16,7 +17,7 @@ const Nav = () => (
 						<Link href="/write">
 							<a>Write</a>
 						</Link>
-						{/* <Signout /> */}
+						<Signout />
 					</>
 				 )} 
 				 {!me && ( 
