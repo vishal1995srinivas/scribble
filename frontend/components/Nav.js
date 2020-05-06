@@ -6,10 +6,10 @@ import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
 	<User>
-		
+
 		{({ data: { me } }) => (
 			<NavStyles data-test="nav">
-				<Link href="/Items">
+				<Link href="/Posts">
 					<a>Posts</a>
 				</Link>
 				{me && (
