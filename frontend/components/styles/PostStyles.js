@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Post = styled.div`
 	background: white;
+
 	border: 1px solid ${(props) => props.theme.offWhite};
 	box-shadow: ${(props) => props.theme.bs};
 	position: relative;
@@ -10,15 +11,21 @@ const Post = styled.div`
 	border-color: transparent; /* outer border of the border making transparent. */
 	img {
 		width: 100%;
-		height: 400px;
+		height: 50rem;
 		object-fit: cover;
 	}
 	p {
+		width: 50rem;
+		height: 5rem;
 		line-height: 2;
 		font-weight: 300;
 		flex-grow: 1;
 		padding: 0 3rem;
 		font-size: 1.5rem;
+		word-wrap: break-word;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.buttonList {
 		display: grid;
@@ -29,6 +36,7 @@ const Post = styled.div`
 		background: ${(props) => props.theme.lightgrey};
 		& > * {
 			background: white;
+			height: 5rem;
 			border: 0;
 			font-size: 1rem;
 			padding: 1rem;

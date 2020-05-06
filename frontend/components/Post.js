@@ -37,7 +37,7 @@ export default class Post extends Component {
 					>
 						<a>Edit ✏️</a>
 					</Link>
-					<AddToCart id={post.id} />
+
 					{/* <DeletePost id={post.id}>Delete This post</DeletePost> */}
 				</div>
 			</PostStyles>
