@@ -11,10 +11,12 @@ type Mutation {
 	requestReset(email: String!): SuccessMessage
 	resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 	createPost(title: String, description: String, price: Int, image: String, largeImage: String): Post!
+	updatePost(id: ID!, title: String, description: String): Post!
 }
 
 type Query {
 	posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, first: Int): [Post]!
 	postsConnection(where: PostWhereInput): PostConnection!
 	me: User
+	post(where: PostWhereUniqueInput!): Post
 }

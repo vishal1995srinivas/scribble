@@ -51,8 +51,10 @@ class UpdatePost extends Component {
 					id: this.props.id
 				}}
 			>
-				{({ data, loading }) => {
+				{({ data, loading, error }) => {
+					//console.log(data);
 					if (loading) return <p>Loading...</p>;
+					if (error) return <Error error={error} />;
 					if (!data.post) return <p>No Post Found for ID {this.props.id}</p>;
 					return (
 						<Mutation mutation={UPDATE_POST_MUTATION} variables={this.state}>
