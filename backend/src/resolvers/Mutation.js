@@ -120,11 +120,11 @@ const Mutations = {
 		// 8. return the new user
 		return updatedUser;
 	},
-	async createStory(parent, args, ctx, info) {
+	async createPost(parent, args, ctx, info) {
 		if (!ctx.request.userId) {
 			throw new Error('You must be logged in to do that!');
 		}
-		const story = await ctx.db.mutation.createStory(
+		const post = await ctx.db.mutation.createPost(
 			{
 				data: {
 					// This is how to create a relationship between the Item and the User
@@ -139,9 +139,9 @@ const Mutations = {
 			info
 		);
 
-		//console.log(story);
+		//console.log(post);
 
-		return story;
+		return post;
 	}
 };
 module.exports = Mutations;

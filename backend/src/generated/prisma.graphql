@@ -1,4 +1,4 @@
-type AggregateStory {
+type AggregatePost {
   count: Int!
 }
 
@@ -15,12 +15,12 @@ scalar DateTime
 scalar Long
 
 type Mutation {
-  createStory(data: StoryCreateInput!): Story!
-  updateStory(data: StoryUpdateInput!, where: StoryWhereUniqueInput!): Story
-  updateManyStories(data: StoryUpdateManyMutationInput!, where: StoryWhereInput): BatchPayload!
-  upsertStory(where: StoryWhereUniqueInput!, create: StoryCreateInput!, update: StoryUpdateInput!): Story!
-  deleteStory(where: StoryWhereUniqueInput!): Story
-  deleteManyStories(where: StoryWhereInput): BatchPayload!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -55,17 +55,7 @@ enum Permission {
   PERMISSIONUPDATE
 }
 
-type Query {
-  story(where: StoryWhereUniqueInput!): Story
-  stories(where: StoryWhereInput, orderBy: StoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Story]!
-  storiesConnection(where: StoryWhereInput, orderBy: StoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StoryConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  node(id: ID!): Node
-}
-
-type Story {
+type Post {
   id: ID!
   title: String!
   description: String!
@@ -76,13 +66,13 @@ type Story {
   user: User!
 }
 
-type StoryConnection {
+type PostConnection {
   pageInfo: PageInfo!
-  edges: [StoryEdge]!
-  aggregate: AggregateStory!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
 }
 
-input StoryCreateInput {
+input PostCreateInput {
   id: ID
   title: String!
   description: String!
@@ -91,12 +81,12 @@ input StoryCreateInput {
   user: UserCreateOneInput!
 }
 
-type StoryEdge {
-  node: Story!
+type PostEdge {
+  node: Post!
   cursor: String!
 }
 
-enum StoryOrderByInput {
+enum PostOrderByInput {
   id_ASC
   id_DESC
   title_ASC
@@ -113,7 +103,7 @@ enum StoryOrderByInput {
   updatedAt_DESC
 }
 
-type StoryPreviousValues {
+type PostPreviousValues {
   id: ID!
   title: String!
   description: String!
@@ -123,25 +113,25 @@ type StoryPreviousValues {
   updatedAt: DateTime!
 }
 
-type StorySubscriptionPayload {
+type PostSubscriptionPayload {
   mutation: MutationType!
-  node: Story
+  node: Post
   updatedFields: [String!]
-  previousValues: StoryPreviousValues
+  previousValues: PostPreviousValues
 }
 
-input StorySubscriptionWhereInput {
+input PostSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: StoryWhereInput
-  AND: [StorySubscriptionWhereInput!]
-  OR: [StorySubscriptionWhereInput!]
-  NOT: [StorySubscriptionWhereInput!]
+  node: PostWhereInput
+  AND: [PostSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
 }
 
-input StoryUpdateInput {
+input PostUpdateInput {
   title: String
   description: String
   image: String
@@ -149,14 +139,14 @@ input StoryUpdateInput {
   user: UserUpdateOneRequiredInput
 }
 
-input StoryUpdateManyMutationInput {
+input PostUpdateManyMutationInput {
   title: String
   description: String
   image: String
   largeImage: String
 }
 
-input StoryWhereInput {
+input PostWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -244,17 +234,27 @@ input StoryWhereInput {
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
   user: UserWhereInput
-  AND: [StoryWhereInput!]
-  OR: [StoryWhereInput!]
-  NOT: [StoryWhereInput!]
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
 }
 
-input StoryWhereUniqueInput {
+input PostWhereUniqueInput {
   id: ID
 }
 
+type Query {
+  post(where: PostWhereUniqueInput!): Post
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
 type Subscription {
-  story(where: StorySubscriptionWhereInput): StorySubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 

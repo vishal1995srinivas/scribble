@@ -10,7 +10,7 @@ type Mutation {
 	signout: SuccessMessage
 	requestReset(email: String!): SuccessMessage
 	resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
-	createStory(title: String, description: String, price: Int, image: String, largeImage: String): Item!
+	createPost(title: String, description: String, price: Int, image: String, largeImage: String): Post!
 }
 
 type Query {

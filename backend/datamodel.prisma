@@ -17,7 +17,7 @@ type User {
   permissions: [Permission] @scalarList(strategy: RELATION)
 }
 
-type Story {
+type Post {
 	id: ID! @id
 	title: String!
 	description: String!
