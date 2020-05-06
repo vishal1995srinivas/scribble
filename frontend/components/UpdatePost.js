@@ -8,7 +8,7 @@ import Error from './ErrorMessage';
 
 const SINGLE_POST_QUERY = gql`
 	query SINGLE_POST_QUERY($id: ID!) {
-		item(where: { id: $id }) {
+		post(where: { id: $id }) {
 			id
 			title
 			description
@@ -33,7 +33,7 @@ class UpdatePost extends Component {
 	};
 	updatePost = async (e, updatePostMutation) => {
 		e.preventDefault();
-		console.log('Updating Item!!');
+		console.log('Updating Post!!');
 		console.log(this.state);
 		const res = await updatePostMutation({
 			variables: {
@@ -53,7 +53,7 @@ class UpdatePost extends Component {
 			>
 				{({ data, loading }) => {
 					if (loading) return <p>Loading...</p>;
-					if (!data.item) return <p>No Item Found for ID {this.props.id}</p>;
+					if (!data.post) return <p>No Post Found for ID {this.props.id}</p>;
 					return (
 						<Mutation mutation={UPDATE_POST_MUTATION} variables={this.state}>
 							{(updatePost, { loading, error }) => (
@@ -68,7 +68,7 @@ class UpdatePost extends Component {
 												name="title"
 												placeholder="Title"
 												required
-												defaultValue={data.item.title}
+												defaultValue={data.post.title}
 												onChange={this.handleChange}
 											/>
 										</label>
@@ -79,7 +79,7 @@ class UpdatePost extends Component {
 												name="description"
 												placeholder="Enter A Description"
 												required
-												defaultValue={data.item.description}
+												defaultValue={data.post.description}
 												onChange={this.handleChange}
 											/>
 										</label>
