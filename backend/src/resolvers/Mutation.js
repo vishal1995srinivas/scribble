@@ -158,6 +158,22 @@ const Mutations = {
 			},
 			info
 		);
+	},
+	async deletePost(parent, args, ctx, info) {
+		const where = { id: args.id };
+		// 1. find the post
+		const post = await ctx.db.query.post({ where }, `{ id title user { id }}`);
+		// 2. Check if they own that post, or have the permissions
+		const ownsPost = post.user.id === ctx.request.userId;
+		const hasPermissions = ctx.request.user.permissions.some((permission) =>
+			[ 'ADMIN', 'POSTDELETE' ].includes(permission)
+		);
+		if (!ownsPost && !hasPermissions) {
+			throw new Error("You don't have permission to do that!");
+		}
+
+		// 3. Delete it!
+		return ctx.db.mutation.deletePost({ where }, info);
 	}
 };
 module.exports = Mutations;
