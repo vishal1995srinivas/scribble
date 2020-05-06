@@ -174,6 +174,42 @@ const Mutations = {
 
 		// 3. Delete it!
 		return ctx.db.mutation.deletePost({ where }, info);
+	},
+	async createLikes(parent, args, ctx, info) {
+		//Check whether they are logged in
+		if (!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
+		//Check the user already liked. if yes ->Throw error.
+		const LikedBefore = await ctx.db.query.likeses({
+			where: {
+				item: {
+					id: args.item
+				},
+				user: {
+					id: ctx.request.userId
+				}
+			}
+		});
+		if (LikedBefore.length > 0) {
+			throw new Error('You cannot like twice buddy!');
+		}
+		//Add Like
+		const like = await ctx.db.mutation.createLikes({
+			data: {
+				user: {
+					connect: {
+						id: ctx.request.userId
+					}
+				},
+				item: {
+					connect: {
+						id: args.item
+					}
+				}
+			}
+		});
+		return like;
 	}
 };
 module.exports = Mutations;

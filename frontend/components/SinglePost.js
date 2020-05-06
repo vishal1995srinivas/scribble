@@ -5,7 +5,7 @@ import Error from './ErrorMessage';
 import styled from 'styled-components';
 import Head from 'next/head';
 import TotalLikes from './TotalLikes';
-// import CreateLikes from './CreateLikes';
+import CreateLikes from './CreateLikes';
 const SinglePostStyles = styled.div`
 	max-width: 1200px;
 	margin: 2rem auto;
@@ -55,7 +55,7 @@ class SinglePost extends Component {
 							</Head>
 							<img src={post.largeImage} alt={post.title} />
 							<div className="details">
-								{/* <CreateLikes postId={this.props.id} />  */}
+								<CreateLikes postId={this.props.id} />
 								<TotalLikes />
 								<h2>{post.title}</h2>
 								<p>Description {post.description}</p>

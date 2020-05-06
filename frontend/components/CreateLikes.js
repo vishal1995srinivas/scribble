@@ -7,7 +7,22 @@ import Error from './ErrorMessage';
 import PleaseSignIn from './PleaseSignIn';
 import User from './User';
 import Link from 'next/link';
-
+const CREATE_LIKE = gql`
+	mutation CREATE_LIKE($item: ID!) {
+		createLikes(item: $item) {
+			id
+		}
+	}
+`;
+const TOTAL_LIKES_QUERY = gql`
+	query TOTAL_LIKES_QUERY {
+		likesesConnection {
+			aggregate {
+				count
+			}
+		}
+	}
+`;
 //ToDo: Disable submit button (OR (Show progress bar)) until image and largeimage url arrive from cloudinary. User clicking submit immediately after uploading images might be a problem here.
 class CreateLikes extends Component {
 	state = {

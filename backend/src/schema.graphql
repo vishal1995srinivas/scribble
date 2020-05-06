@@ -13,6 +13,7 @@ type Mutation {
 	createPost(title: String, description: String, price: Int, image: String, largeImage: String): Post!
 	updatePost(id: ID!, title: String, description: String): Post!
 	deletePost(id: ID!): Post
+	createLikes(item: ID!): Likes!
 }
 
 type Query {
