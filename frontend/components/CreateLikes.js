@@ -15,44 +15,48 @@ class CreateLikes extends Component {
 	};
 	render() {
 		return (
-			<Mutation
-				mutation={CREATE_LIKE}
-				variables={{ item: this.props.itemId }}
-				refetchQueries={[ { query: TOTAL_LIKES_QUERY } ]}
-			>
-				{(createLikes, { loading, error }) => (
-					<Form
-						data-test="form"
-						onSubmit={async (e) => {
-							// Stop the form from submitting
-							e.preventDefault();
-							// call the mutation
-							const res = await createLikes();
-							// change them to the single item page
-							console.log(res);
-							this.setState({ buttonClicked: true });
-						}}
+			<User>
+				{({ data: { me } }) => (
+					<Mutation
+						mutation={CREATE_LIKE}
+						variables={{ item: this.props.itemId }}
+						refetchQueries={[ { query: TOTAL_LIKES_QUERY } ]}
 					>
-						<Error error={error} />
-						{me && (
-							<div>
-								{this.state.buttonClicked ? (
-									<button type="submit" disabled>
-										Liked !
-									</button>
-								) : (
-									<button type="submit">Lik{loading ? 'ing' : 'e'}</button>
+						{(createLikes, { loading, error }) => (
+							<Form
+								data-test="form"
+								onSubmit={async (e) => {
+									// Stop the form from submitting
+									e.preventDefault();
+									// call the mutation
+									const res = await createLikes();
+									// change them to the single item page
+									console.log(res);
+									this.setState({ buttonClicked: true });
+								}}
+							>
+								<Error error={error} />
+								{me && (
+									<div>
+										{this.state.buttonClicked ? (
+											<button type="submit" disabled>
+												Liked !
+											</button>
+										) : (
+											<button type="submit">Lik{loading ? 'ing' : 'e'}</button>
+										)}
+									</div>
 								)}
-							</div>
+								{!me && (
+									<Link href="/signup">
+										<a>Like</a>
+									</Link>
+								)}
+							</Form>
 						)}
-						{!me && (
-							<Link href="/signup">
-								<a>Like</a>
-							</Link>
-						)}
-					</Form>
+					</Mutation>
 				)}
-			</Mutation>
+			</User>
 		);
 	}
 }
