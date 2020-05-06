@@ -48,5 +48,9 @@ const Mutations = {
 		// 5. Return the user
 		console.log(token);
 		return user;
+	},
+	signout(parent, args, ctx, info) {
+		ctx.response.clearCookie('token');
+		return { message: 'Goodbye!' };
 	}
 };
