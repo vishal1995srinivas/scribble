@@ -1,6 +1,6 @@
 import SignUp from '../components/SignUp';
 
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 const Columns = styled.div`
 	display: grid;
