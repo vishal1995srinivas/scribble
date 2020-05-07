@@ -1,4 +1,5 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://scribble-production-fc5d89c43c.herokuapp.com/scribble-prod/prod
 datamodel: datamodel.prisma
 secret : ${env:PRISMA_SECRET}
 generate :

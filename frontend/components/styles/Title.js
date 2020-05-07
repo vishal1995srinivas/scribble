@@ -16,5 +16,4 @@ const Title = styled.h3`
 		padding: 0 1rem;
 	}
 `;
-
 export default Title;

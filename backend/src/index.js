@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: 'variables.env' });
 const createServer = require('./createServer');
 const db = require('./db');
-
+//Start it-> this comment done to push env inside heroku. so dont worry!
 const server = createServer();
 
 server.express.use(cookieParser());
