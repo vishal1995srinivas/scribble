@@ -60,7 +60,11 @@
 
 [![Product Name Screen Shot][product-screenshot]](http://scribble-next-prod.herokuapp.com)
 
-Thanks for checking out my first E-Commerce website.SCRIBBLE involves all operations from selling of a product to checking out an item after payment.
+Thanks for Checking out my first full-stack blog app. This app gives users a full freedom of all CRUD operations of their blog posts and also entails a function of "LIKE" which encourages the fellow writers. So I hereby welcome you for the ride.
+
+Special Attention : Heroku Router links are working dead slow. As said by the heroku folks, the resources are dynamically allocated on number of users. Hence, the app will be faster when more number of users starts using it. For testing, Open links in a New tab, which may open faster. Thank you.
+
+The below are the stack used
 
 # Stack Used 
 
