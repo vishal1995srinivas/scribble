@@ -14,15 +14,7 @@ const CREATE_LIKE = gql`
 		}
 	}
 `;
-// const TOTAL_LIKES_QUERY = gql`
-// 	query TOTAL_LIKES_QUERY($post: ID!) {
-// 		likesesConnection(where: { post: { id: $post } }) {
-// 			aggregate {
-// 				count
-// 			}
-// 		}
-// 	}
-// `;
+
 //Check likes query : checks whether the user has liked this post or not.
 const CHECK_LIKES_QUERY = gql`
 	query CHECK_LIKES_QUERY($post: ID!) {
@@ -48,7 +40,10 @@ class CreateLikes extends Component {
 									<Mutation
 										mutation={CREATE_LIKE}
 										variables={{ post: this.props.postId }}
-										refetchQueries={[ { query: TOTAL_LIKES_QUERY }, { query: CHECK_LIKES_QUERY } ]}
+										refetchQueries={[
+											{ query: TOTAL_LIKES_QUERY, variables: { post: this.props.postId } },
+											{ query: CHECK_LIKES_QUERY, variables: { post: this.props.postId } }
+										]}
 									>
 										{(createLikes, { loading, error }) => (
 											<Form
@@ -65,6 +60,7 @@ class CreateLikes extends Component {
 											>
 												{data.length > 0 ? (
 													<div>
+														<Error error={error} />
 														<TotalLikes postId={postId} />
 														<div align="right">
 															<button type="submit" disabled>
@@ -78,6 +74,7 @@ class CreateLikes extends Component {
 															<div>
 																{this.state.buttonClicked ? (
 																	<div>
+																		<Error error={error} />
 																		<TotalLikes postId={postId} />
 																		<div align="right">
 																			<button type="submit" disabled>
@@ -87,6 +84,7 @@ class CreateLikes extends Component {
 																	</div>
 																) : (
 																	<div>
+																		<Error error={error} />
 																		<TotalLikes postId={postId} />
 																		<div align="right">
 																			<button type="submit">
@@ -101,6 +99,7 @@ class CreateLikes extends Component {
 												)}
 												{!me && (
 													<div>
+														<Error error={error} />
 														<TotalLikes postId={postId} />
 														<Link href="/signup">
 															<button type="text">🔒 SignIn To 👍 like</button>
