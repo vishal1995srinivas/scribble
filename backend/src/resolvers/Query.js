@@ -16,17 +16,15 @@ const Query = {
 			info
 		);
 	},
-	likeses(parent, args, ctx, info) {
-		if (!ctx.request.userId) {
-			return null;
-		}
+	async likeses(parent, args, ctx, info) {
 		// console.log(args.where.post.id);
-		return ctx.db.query.likeses(
+		let likes = await ctx.db.query.likeses(
 			{
 				where: { post: { id: args.where.post.id }, user: { id: ctx.request.userId } }
 			},
 			info
 		);
+		return likes;
 	}
 };
 

@@ -57,8 +57,7 @@ class SinglePost extends Component {
 							<div className="details">
 								<CreateLikes postId={this.props.id} />
 								<h2>{post.title}</h2>
-								<p>Description {post.description}</p>
-								<p>Likes</p>
+								<p>{post.description}</p>
 							</div>
 						</SinglePostStyles>
 					);
